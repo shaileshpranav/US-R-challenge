@@ -2,8 +2,9 @@
   <arg name="world_name" default="$(find final_project)/world/final_world.world" />
   <arg name="gazebo_ros_output" default="screen"/>
   <!-- load content of targets.yaml into the Parameter Server -->
+  <node name="simple_navigation_goals" pkg="final_project" type="final_project_node">
   <rosparam file="$(find final_project)/param/aruco_lookup.yaml" command="load" />
-
+  </node>
 
 <!-- <node name="gazebo" pkg="gazebo_ros" type="gazebo"
    args="$(find aws_robomaker_small_house_world)/worlds/small_house.world" respawn="false" output="screen" /> -->

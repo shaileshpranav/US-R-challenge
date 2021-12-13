@@ -6,6 +6,8 @@
 #include <tf2_ros/transform_broadcaster.h>
 #include <tf2_ros/transform_listener.h>
 #include <ros/ros.h>
+#include <xmlrpcpp/XmlRpcValue.h>
+#include <iostream>
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
@@ -75,14 +77,25 @@ int main(int argc, char** argv)
     ROS_INFO("Waiting for the move_base action server to come up for follower");
   }
 
+
+  XmlRpc::XmlRpcValue my_list[4];
+  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_1", my_list[0]);
+  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_1", my_list[1]);
+  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_1", my_list[2]);
+  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_1", my_list[3]);
+  
   move_base_msgs::MoveBaseGoal explorer_goal;
   move_base_msgs::MoveBaseGoal follower_goal;
+  
+
 
   //Build goal for explorer
   explorer_goal.target_pose.header.frame_id = "map";
   explorer_goal.target_pose.header.stamp = ros::Time::now();
-  explorer_goal.target_pose.pose.position.x = 7.710214;//
-  explorer_goal.target_pose.pose.position.y = -1.716889;//
+  // explorer_goal.target_pose.pose.position.x = 7.710214;//
+  // explorer_goal.target_pose.pose.position.y = -1.716889;//
+  explorer_goal.target_pose.pose.position.x = my_list[0];
+  explorer_goal.target_pose.pose.position.y = my_list[1];
   explorer_goal.target_pose.pose.orientation.w = 1.0;
 
   //Build goal for follower
@@ -91,6 +104,7 @@ int main(int argc, char** argv)
   follower_goal.target_pose.pose.position.x = -0.289296;//
   follower_goal.target_pose.pose.position.y = -1.282680;//
   follower_goal.target_pose.pose.orientation.w = 1.0;
+
 
 
   // explorer_client.waitForResult();
@@ -105,22 +119,26 @@ int main(int argc, char** argv)
   ros::Rate loop_rate(10);
 
   while (ros::ok()) {
+    int goal_reach = 0;
     if (!explorer_goal_sent)     {
       ROS_INFO("Sending goal for explorer");
+      // ROS_INFO("%f\n",my_list[0]);
+      // ROS_INFO("%f\n",my_list[1]);
       explorer_client.sendGoal(explorer_goal);//this should be sent only once
       explorer_goal_sent = true;
     }
     if (explorer_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+      goal_reach ++;
       ROS_INFO("Hooray, robot reached goal");
     }
-    if (!follower_goal_sent) {
-      ROS_INFO("Sending goal for explorer");
-      follower_client.sendGoal(follower_goal);//this should be sent only once
-      follower_goal_sent = true;
-    }
-    if (follower_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
-      ROS_INFO("Hooray, robot reached goal");
-    }
+    // if (!follower_goal_sent) {
+    //   ROS_INFO("Sending goal for follower");
+    //   follower_client.sendGoal(follower_goal);//this should be sent only once
+    //   follower_goal_sent = true;
+    // }
+    // if (follower_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+    //   ROS_INFO("Hooray, robot reached goal");
+    // }
     broadcast();
     listen(tfBuffer);
     //ros::spinOnce(); //uncomment this if you have subscribers in your code
