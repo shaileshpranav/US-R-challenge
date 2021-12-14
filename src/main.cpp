@@ -16,6 +16,8 @@ typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseCl
 
 
 int32_t fid_id;
+bool detect;
+int goal_reach = 0;
 
 void broadcast() {
   //for broadcaster
@@ -78,7 +80,10 @@ void listen(tf2_ros::Buffer& tfBuffer) {
       << trans_y << ","
       << trans_z << "]"
     );
+    // if(detect == true){
     fol_goal_posfn(trans_x,trans_y);
+    // ROS_INFO("x = %d y = %d z = %d",trans_x,trans_y,trans_z);
+    // }
   }
   catch (tf2::TransformException& ex) {
     ROS_WARN("%s", ex.what());
@@ -86,8 +91,8 @@ void listen(tf2_ros::Buffer& tfBuffer) {
   }
 }
 
-bool detect;
-int goal_reach = 0;
+
+
 
 
 
@@ -105,15 +110,15 @@ transformStamped.transform.translation.x = msgs->transforms[0].transform.transla
 /*write the remaining code here*/
 fid_id = msgs->transforms[0].fiducial_id;
 detect = true;
-ROS_INFO("Detect true");
-// br.sendTransform(transformStamped);
+ROS_INFO("fid_id = %d",fid_id);
+br.sendTransform(transformStamped);
 }
 else
 {
   detect = false;
-  ROS_INFO("Detect false");
+  // ROS_INFO("Detect false");
 }
-ROS_INFO("Callback call exit");
+// ROS_INFO("Callback call exit");
 }
 
 int main(int argc, char** argv)
@@ -141,55 +146,45 @@ int main(int argc, char** argv)
     ROS_INFO("Waiting for the move_base action server to come up for follower");
   }
 
+  std::array<XmlRpc::XmlRpcValue,5> ex_goal_pos;
 
-  XmlRpc::XmlRpcValue my_goal1;
-  XmlRpc::XmlRpcValue my_goal2;
-  XmlRpc::XmlRpcValue my_goal3;
-  XmlRpc::XmlRpcValue my_goal4;
-  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_1", my_goal1);
-  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_2", my_goal2);
-  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_3", my_goal3);
-  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_4", my_goal4);
+  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_1", ex_goal_pos[0]);
+  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_2", ex_goal_pos[1]);
+  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_3", ex_goal_pos[2]);
+  nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_4", ex_goal_pos[3]);
   
-  // std::array<std::array<int,2>,5> ex_goal_pos = {my_goal1,my_goal2,my_goal3,my_goal4};
+  move_base_msgs::MoveBaseGoal explorer_goal[5];
+  move_base_msgs::MoveBaseGoal follower_goal[5];
 
-  move_base_msgs::MoveBaseGoal explorer_goal[4];
-  move_base_msgs::MoveBaseGoal follower_goal[4];
-  
-
-  
-    explorer_goal[0].target_pose.pose.position.x = my_goal1[0];
-    explorer_goal[0].target_pose.pose.position.y = my_goal1[1];
-
-    explorer_goal[1].target_pose.pose.position.x = my_goal2[0];
-    explorer_goal[1].target_pose.pose.position.y = my_goal2[1];
-
-    explorer_goal[2].target_pose.pose.position.x = my_goal3[0];
-    explorer_goal[2].target_pose.pose.position.y = my_goal3[1];
-    
-    explorer_goal[3].target_pose.pose.position.x = my_goal4[0];
-    explorer_goal[3].target_pose.pose.position.y = my_goal4[1];
-
-    explorer_goal[4].target_pose.pose.position.x = -4;
-    explorer_goal[4].target_pose.pose.position.y = 2.5;
-
-  for(int i=0; i<4;i++)
+  for(int i=0; i<=3;i++)
   {
     explorer_goal[i].target_pose.header.frame_id = "map";
     explorer_goal[i].target_pose.header.stamp = ros::Time::now();
     explorer_goal[i].target_pose.pose.orientation.w = 1.0;
+    explorer_goal[i].target_pose.pose.position.x = ex_goal_pos[i][0];
+    explorer_goal[i].target_pose.pose.position.y = ex_goal_pos[i][1];
   }
+    explorer_goal[4].target_pose.header.frame_id = "map";
+    explorer_goal[4].target_pose.header.stamp = ros::Time::now();
+    explorer_goal[4].target_pose.pose.orientation.w = 1.0;
+    explorer_goal[4].target_pose.pose.position.x = -4;
+    explorer_goal[4].target_pose.pose.position.y = 2.5;
 
-  for(int i = 0; i<4;i++)
+  for(int i = 0; i<=3;i++)
   {
     follower_goal[i].target_pose.header.frame_id = "map";
     follower_goal[i].target_pose.header.stamp = ros::Time::now();
     follower_goal[i].target_pose.pose.position.x = follower_goal_pos[i][0];//
     follower_goal[i].target_pose.pose.position.y = follower_goal_pos[i][1];//
     follower_goal[i].target_pose.pose.orientation.w = 1.0;
+    
   }
+    follower_goal[4].target_pose.header.frame_id = "map";
+    follower_goal[4].target_pose.header.stamp = ros::Time::now();
     follower_goal[4].target_pose.pose.position.x = -4;//
     follower_goal[4].target_pose.pose.position.y = 3.5;//
+    follower_goal[4].target_pose.pose.orientation.w = 1.0;
+
   // explorer_client.waitForResult();
 
   // ROS_INFO("Sending goal");
@@ -202,6 +197,7 @@ int main(int argc, char** argv)
   ros::Rate loop_rate(10);
   int cnt_ex = 0;
   int cnt_fl = 0;
+  int test_i = 0;
   while (ros::ok()) {
     
     if (!explorer_goal_sent && cnt_ex<5)
@@ -211,11 +207,10 @@ int main(int argc, char** argv)
       explorer_client.sendGoal(explorer_goal[cnt_ex]);//this should be sent only once
       explorer_goal_sent = true;
     }
-    if (explorer_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED && cnt_ex<5) {
-      cnt_ex++;
-      if(cnt_ex<4)
+    if (explorer_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+      if(cnt_ex<5)
       {
-        explorer_goal_sent = false;
+        ROS_INFO("cnt_ex not yet 5");
         while(!detect)
         {
           geometry_msgs::Twist msg;
@@ -225,27 +220,41 @@ int main(int argc, char** argv)
           loop_rate.sleep();
         }
       }
-      ROS_INFO("Hooray, robot reached goal");
+      cnt_ex++;
+      explorer_goal_sent = false;
+      ROS_INFO("Hooray, Explorer reached goal");
     }
-    if(cnt_ex == 5)
+    if(cnt_ex >= 5)
     {
-          geometry_msgs::Twist msg;
-          msg.angular.z = 0;
-          pubex.publish(msg);
+      ROS_INFO("cnt_ex = 5");
+      if(test_i<4)
+      {
+      ROS_INFO("x = %d y = %d",follower_goal_pos[test_i][0],follower_goal_pos[test_i][1]);
+      test_i++;
+      }
+    //       geometry_msgs::Twist msg;
+    //       msg.linear.x = 0;
+    //       msg.angular.z = 0;
+    //       pubex.publish(msg);
     }
-    if (!follower_goal_sent && cnt_ex==5 && cnt_fl<5) {
+    if(!follower_goal_pos[3].empty())
+    {
+    if (!follower_goal_sent && cnt_fl<5) {
       ROS_INFO("Sending goal for follower");
       follower_client.sendGoal(follower_goal[cnt_fl]);//this should be sent only once
       follower_goal_sent = true;
     }
-    if (follower_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED && cnt_fl!=5) {
+    if (follower_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+      if(cnt_fl<6)
+      {
       follower_goal_sent = false;
       cnt_fl++;
       ROS_INFO("Hooray, robot reached goal");
+      }
+      else{
+        ros::shutdown();
+      }
     }
-    if(cnt_fl == 5)
-    {
-      ros::shutdown();
     }
     broadcast();
     listen(tfBuffer);
