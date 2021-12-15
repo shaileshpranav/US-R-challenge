@@ -17,22 +17,18 @@ bool detect{false};
 std::array<std::array<double,2>,4> follower_goal_pos;
 bool on_goal{false};
 
-
-
-
-
 void fol_goal_posfn(double x,double y)
 {
   ROS_INFO("folfn x = %f y = %f",x,y);
 switch (fid_id)
 {
   case 0:
-    follower_goal_pos[0][0] = -1.752882;//x;
-    follower_goal_pos[0][1] =  3.246192; //y;
+    follower_goal_pos[0][0] = x;
+    follower_goal_pos[0][1] = y;
     break;
   case 1:
-    follower_goal_pos[1][0] = -2.510293;
-    follower_goal_pos[1][1] = 1.125585;
+    follower_goal_pos[1][0] = x;
+    follower_goal_pos[1][1] = y;
     break;
   case 2:
     follower_goal_pos[2][0] = x;
@@ -47,33 +43,33 @@ switch (fid_id)
 }
 }
 
-void arsubcallback(const fiducial_msgs::FiducialTransformArray::ConstPtr &msgs){
-if (!msgs->transforms.empty()) {//check marker is detected
-// broadcaster object
-static tf2_ros::TransformBroadcaster br;
-geometry_msgs::TransformStamped transformStamped;
-//broadcast the new frame to /tf Topic
-transformStamped.header.stamp = ros::Time::now();
-transformStamped.header.frame_id = "explorer_tf/camera_rgb_optical_frame";
-transformStamped.child_frame_id = "my_frame";
-transformStamped.transform.translation.x = msgs->transforms[0].transform.translation.x;
-transformStamped.transform.translation.y = msgs->transforms[0].transform.translation.y;
-transformStamped.transform.translation.z = msgs->transforms[0].transform.translation.z;
-transformStamped.transform.rotation.x = msgs->transforms[0].transform.rotation.x;
-transformStamped.transform.rotation.y = msgs->transforms[0].transform.rotation.y;
-transformStamped.transform.rotation.z = msgs->transforms[0].transform.rotation.z;
-transformStamped.transform.rotation.w = msgs->transforms[0].transform.rotation.w;
-/*write the remaining code here*/
-fid_id = msgs->transforms[0].fiducial_id;
-detect = true;
-br.sendTransform(transformStamped);
-}
-else
+void arsubcallback(const fiducial_msgs::FiducialTransformArray::ConstPtr &msgs)
 {
-  detect = false;
+  if (!msgs->transforms.empty()) {//check marker is detected
+  // broadcaster object
+  static tf2_ros::TransformBroadcaster br;
+  geometry_msgs::TransformStamped transformStamped;
+  //broadcast the new frame to /tf Topic
+  transformStamped.header.stamp = ros::Time::now();
+  transformStamped.header.frame_id = "explorer_tf/camera_rgb_optical_frame";
+  transformStamped.child_frame_id = "my_frame";
+  transformStamped.transform.translation.x = msgs->transforms[0].transform.translation.x;
+  transformStamped.transform.translation.y = msgs->transforms[0].transform.translation.y;
+  transformStamped.transform.translation.z = msgs->transforms[0].transform.translation.z;
+  transformStamped.transform.rotation.x = msgs->transforms[0].transform.rotation.x;
+  transformStamped.transform.rotation.y = msgs->transforms[0].transform.rotation.y;
+  transformStamped.transform.rotation.z = msgs->transforms[0].transform.rotation.z;
+  transformStamped.transform.rotation.w = msgs->transforms[0].transform.rotation.w;
+  /*write the remaining code here*/
+  fid_id = msgs->transforms[0].fiducial_id;
+  detect = true;
+  br.sendTransform(transformStamped);
+  }
+  else
+  {
+    detect = false; 
 
-}
-
+  }
 }
 
 void listen(tf2_ros::Buffer& tfBuffer) {
@@ -141,11 +137,6 @@ void tolerance()
   if(follower_goal_pos[i][1]<-3.8)
     follower_goal_pos[i][1] = -3.3;
   }
-  // if(follower_goal_pos[i][0]>0 && follower_goal_pos[i][1]>0)
-    // {
-      // follower_goal_pos[i][0]
-    // }
-
 }
 
 int main(int argc, char** argv)
@@ -153,11 +144,11 @@ int main(int argc, char** argv)
   bool explorer_goal_sent = false;
   bool follower_goal_sent = false;
 
-  ros::init(argc, argv, "simple_navigation_goals");
+  ros::init(argc, argv, "simple_navigation_goals");   //simple_navigation_goals node starts
   ros::NodeHandle nh;
 
-  ros::Subscriber arsub = nh.subscribe("fiducial_transforms",100, arsubcallback);
-  ros::Publisher pubex=nh.advertise<geometry_msgs::Twist>("explorer/cmd_vel", 100);
+  ros::Subscriber arsub = nh.subscribe("fiducial_transforms",100, arsubcallback);   //aruco marker detect
+  ros::Publisher pubex = nh.advertise<geometry_msgs::Twist>("explorer/cmd_vel", 100);   //robot rotation when in goal
 
   // tell the action client that we want to spin a thread by default
   MoveBaseClient explorer_client("/explorer/move_base", true);
@@ -175,6 +166,8 @@ int main(int argc, char** argv)
 
   std::array<XmlRpc::XmlRpcValue,5> ex_goal_pos;
 
+
+  //Get aruca marker locations from parameter list
   nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_1", ex_goal_pos[0]);
   nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_2", ex_goal_pos[1]);
   nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_3", ex_goal_pos[2]);
@@ -183,6 +176,7 @@ int main(int argc, char** argv)
   move_base_msgs::MoveBaseGoal explorer_goal[5];
   move_base_msgs::MoveBaseGoal follower_goal[5];
 
+  //goal positions for explorer
   for(int i=0; i<=3;i++)
   {
     explorer_goal[i].target_pose.header.frame_id = "map";
@@ -191,12 +185,14 @@ int main(int argc, char** argv)
     explorer_goal[i].target_pose.pose.position.x = ex_goal_pos[i][0];
     explorer_goal[i].target_pose.pose.position.y = ex_goal_pos[i][1];
   }
+  //home position for explorer
     explorer_goal[4].target_pose.header.frame_id = "map";
     explorer_goal[4].target_pose.header.stamp = ros::Time::now();
     explorer_goal[4].target_pose.pose.orientation.w = 1.0;
     explorer_goal[4].target_pose.pose.position.x = -4;
     explorer_goal[4].target_pose.pose.position.y = 2.5;
   
+  //goal positions for follower
     for(int i = 0; i<=3;i++)
   {
     follower_goal[i].target_pose.header.frame_id = "map";
@@ -206,6 +202,7 @@ int main(int argc, char** argv)
     follower_goal[i].target_pose.pose.orientation.w = 1.0;
     
   }
+  //home position for follower
     follower_goal[4].target_pose.header.frame_id = "map";
     follower_goal[4].target_pose.header.stamp = ros::Time::now();
     follower_goal[4].target_pose.pose.position.x = -4;
@@ -213,13 +210,13 @@ int main(int argc, char** argv)
     follower_goal[4].target_pose.pose.orientation.w = 1.0;
 
 
-
   tf2_ros::Buffer tfBuffer;
   tf2_ros::TransformListener tfListener(tfBuffer);
   ros::Rate loop_rate(10);
-  int cnt_ex = 0;
+  int cnt_ex = 0;   //Number of goals visited by explorer
   int cnt_fl = 0;
   bool test{true};
+
   while (ros::ok()) {
     if(cnt_ex<5)
     {
@@ -227,7 +224,7 @@ int main(int argc, char** argv)
       {
         std::cout<<"Sending goal";
         ROS_INFO("Sending goal for explorer");
-        explorer_client.sendGoal(explorer_goal[cnt_ex]);//this should be sent only once
+        explorer_client.sendGoal(explorer_goal[cnt_ex]);      //goal sent to explorer
         explorer_goal_sent = true;
       }
       if (explorer_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) 
@@ -245,7 +242,7 @@ int main(int argc, char** argv)
             loop_rate.sleep();
           } while(!detect);
           ROS_INFO("CALLING LISTENER");
-          listen(tfBuffer);
+          listen(tfBuffer);   //transform frame from camera frame to map
         }
         detect = false;
         ros::spinOnce();
@@ -257,23 +254,15 @@ int main(int argc, char** argv)
         on_goal = false;
       }
     }
-    // if (cnt_ex > 4 && cnt_fl == 0)
-    // { 
-      // ROS_INFO("End Explorer");
-      
-      // ROS_INFO("Start Follower");
-      
-      // disp();
-      // test = false;
-    // }
-    if(cnt_ex>0)
+
+    if(cnt_ex>4)
     {
       // tolerance();
     if (!follower_goal_sent) {
       disp();
       ROS_INFO("Sending goal for follower");
       ROS_INFO("cnt_fl = %d follower_goal_pos x = %f y = %f",cnt_fl, follower_goal_pos[cnt_fl][0],follower_goal_pos[cnt_fl][1]);
-      follower_client.sendGoal(follower_goal[cnt_fl]);//this should be sent only once
+      follower_client.sendGoal(follower_goal[cnt_fl]);    //Sending goal position to follower
       follower_goal_sent = true;
     }
     if (follower_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
@@ -288,9 +277,6 @@ int main(int argc, char** argv)
       ROS_INFO("Completed...Shutting down");
       ros::shutdown();
     }
-
-    // ROS_INFO("fid_id in = %d follower_goal_pos x = %d y = %d",fid_id, follower_goal_pos[cnt_fl][0],follower_goal_pos[cnt_fl][1]);
-    // ros::spinOnce(); //uncomment this if you have subscribers in your code
     loop_rate.sleep();
   }
 
