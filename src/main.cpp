@@ -27,12 +27,12 @@ void fol_goal_posfn(double x,double y)
 switch (fid_id)
 {
   case 0:
-    follower_goal_pos[0][0] = x;
-    follower_goal_pos[0][1] = y;
+    follower_goal_pos[0][0] = -1.752882;//x;
+    follower_goal_pos[0][1] =  3.246192; //y;
     break;
   case 1:
-    follower_goal_pos[1][0] = x;
-    follower_goal_pos[1][1] = y;
+    follower_goal_pos[1][0] = -2.510293;
+    follower_goal_pos[1][1] = 1.125585;
     break;
   case 2:
     follower_goal_pos[2][0] = x;
@@ -128,6 +128,26 @@ void disp()
   }
 }
 
+void tolerance()
+{
+  for(int i = 0; i<4;i++)
+  {
+  if(follower_goal_pos[i][0]>=8)
+    follower_goal_pos[i][0] = 7.8;
+  if(follower_goal_pos[i][0]<-5)
+    follower_goal_pos[i][0] = -4.8;
+  if(follower_goal_pos[i][1]>3.8)
+    follower_goal_pos[i][1] = 3.2;
+  if(follower_goal_pos[i][1]<-3.8)
+    follower_goal_pos[i][1] = -3.3;
+  }
+  // if(follower_goal_pos[i][0]>0 && follower_goal_pos[i][1]>0)
+    // {
+      // follower_goal_pos[i][0]
+    // }
+
+}
+
 int main(int argc, char** argv)
 {
   bool explorer_goal_sent = false;
@@ -181,8 +201,8 @@ int main(int argc, char** argv)
   {
     follower_goal[i].target_pose.header.frame_id = "map";
     follower_goal[i].target_pose.header.stamp = ros::Time::now();
-    follower_goal[i].target_pose.pose.position.x = follower_goal_pos[i][0];
-    follower_goal[i].target_pose.pose.position.y = follower_goal_pos[i][1];
+    follower_goal[i].target_pose.pose.position.x = follower_goal_pos[i][0]; 
+    follower_goal[i].target_pose.pose.position.y = follower_goal_pos[i][1]; 
     follower_goal[i].target_pose.pose.orientation.w = 1.0;
     
   }
@@ -191,6 +211,8 @@ int main(int argc, char** argv)
     follower_goal[4].target_pose.pose.position.x = -4;
     follower_goal[4].target_pose.pose.position.y = 3.5;
     follower_goal[4].target_pose.pose.orientation.w = 1.0;
+
+
 
   tf2_ros::Buffer tfBuffer;
   tf2_ros::TransformListener tfListener(tfBuffer);
@@ -244,9 +266,9 @@ int main(int argc, char** argv)
       // disp();
       // test = false;
     // }
-    if(cnt_ex>1)
+    if(cnt_ex>0)
     {
-      
+      // tolerance();
     if (!follower_goal_sent) {
       disp();
       ROS_INFO("Sending goal for follower");
