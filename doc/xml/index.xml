@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+  <compound refid="main_8cpp" kind="file"><name>main.cpp</name>
+    <member refid="main_8cpp_1a21e20cc0b6656ae897b3cbb969b93241" kind="typedef"><name>MoveBaseClient</name></member>
+    <member refid="main_8cpp_1ad24e68987df8bbaa9716ecffc857ee4d" kind="variable"><name>fid_id</name></member>
+    <member refid="main_8cpp_1af0410f2e5b451dd6d15f2f9d283c0e78" kind="variable"><name>detect</name></member>
+    <member refid="main_8cpp_1a9d8ba91c719a8b2581f1885d1810d86d" kind="variable"><name>follower_goal_pos</name></member>
+    <member refid="main_8cpp_1ad77af23e54b34ac30a3233870b0adacd" kind="variable"><name>on_goal</name></member>
+    <member refid="main_8cpp_1ae66b6535026c9e5a56f3b90362b0bf09" kind="function"><name>fol_goal_posfn</name></member>
+    <member refid="main_8cpp_1ab6f857f99ed1634c0531b73b91a0742e" kind="function"><name>arsubcallback</name></member>
+    <member refid="main_8cpp_1aa2baabcf8bc6fb2727c0aade0c1b8efe" kind="function"><name>listen</name></member>
+    <member refid="main_8cpp_1a7e822c432bba543c9a7786eddb6f22b7" kind="function"><name>disp</name></member>
+    <member refid="main_8cpp_1a4cc7f91e3b69267132b1c1cc3416949d" kind="function"><name>tolerance</name></member>
+    <member refid="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+</doxygenindex>

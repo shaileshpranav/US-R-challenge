@@ -7,9 +7,9 @@
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="zeid@todo.todo">zeid</maintainer>
-
-
+  <maintainer email="spraj@umd.edu">Shailesh Pranav Rajendran</maintainer>
+<maintainer email="vdatla@umd.edu">Vishwanath Datla</maintainer>
+<maintainer email="hpendli@umd.edu">Harika Pendli</maintainer>
   <!-- One license tag required, multiple allowed, one license per tag -->
   <!-- Commonly used license strings: -->
   <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->

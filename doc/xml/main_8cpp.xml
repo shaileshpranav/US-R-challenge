@@ -1,0 +1,549 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="main_8cpp" kind="file" language="C++">
+    <compoundname>main.cpp</compoundname>
+    <includes local="no">actionlib/client/simple_action_client.h</includes>
+    <includes local="no">fiducial_msgs/FiducialTransformArray.h</includes>
+    <includes local="no">geometry_msgs/Twist.h</includes>
+    <includes local="no">move_base_msgs/MoveBaseAction.h</includes>
+    <includes local="no">tf2/LinearMath/Quaternion.h</includes>
+    <includes local="no">tf2_ros/transform_broadcaster.h</includes>
+    <includes local="no">tf2_ros/transform_listener.h</includes>
+    <includes local="no">ros/ros.h</includes>
+    <includes local="no">xmlrpcpp/XmlRpcValue.h</includes>
+    <includes local="no">std_msgs/String.h</includes>
+    <includes local="no">iostream</includes>
+    <includes local="no">array</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>src/main.cpp</label>
+        <link refid="main_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>fiducial_msgs/FiducialTransformArray.h</label>
+      </node>
+      <node id="5">
+        <label>move_base_msgs/MoveBaseAction.h</label>
+      </node>
+      <node id="10">
+        <label>xmlrpcpp/XmlRpcValue.h</label>
+      </node>
+      <node id="4">
+        <label>geometry_msgs/Twist.h</label>
+      </node>
+      <node id="13">
+        <label>array</label>
+      </node>
+      <node id="2">
+        <label>actionlib/client/simple_action_client.h</label>
+      </node>
+      <node id="9">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="11">
+        <label>std_msgs/String.h</label>
+      </node>
+      <node id="12">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>tf2/LinearMath/Quaternion.h</label>
+      </node>
+      <node id="8">
+        <label>tf2_ros/transform_listener.h</label>
+      </node>
+      <node id="7">
+        <label>tf2_ros/transform_broadcaster.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="main_8cpp_1a21e20cc0b6656ae897b3cbb969b93241" prot="public" static="no">
+        <type>actionlib::SimpleActionClient&lt; move_base_msgs::MoveBaseAction &gt;</type>
+        <definition>typedef actionlib::SimpleActionClient&lt;move_base_msgs::MoveBaseAction&gt; MoveBaseClient</definition>
+        <argsstring></argsstring>
+        <name>MoveBaseClient</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="14" column="39" bodyfile="src/main.cpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="main_8cpp_1ad24e68987df8bbaa9716ecffc857ee4d" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t fid_id</definition>
+        <argsstring></argsstring>
+        <name>fid_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="15" column="9" bodyfile="src/main.cpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="main_8cpp_1af0410f2e5b451dd6d15f2f9d283c0e78" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool detect</definition>
+        <argsstring></argsstring>
+        <name>detect</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="16" column="6" bodyfile="src/main.cpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="main_8cpp_1a9d8ba91c719a8b2581f1885d1810d86d" prot="public" static="no" mutable="no">
+        <type>std::array&lt; std::array&lt; double, 2 &gt;, 4 &gt;</type>
+        <definition>std::array&lt;std::array&lt;double,2&gt;,4&gt; follower_goal_pos</definition>
+        <argsstring></argsstring>
+        <name>follower_goal_pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="17" column="12" bodyfile="src/main.cpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="main_8cpp_1ad77af23e54b34ac30a3233870b0adacd" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool on_goal</definition>
+        <argsstring></argsstring>
+        <name>on_goal</name>
+        <initializer>{false}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="18" column="6" bodyfile="src/main.cpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="main_8cpp_1ae66b6535026c9e5a56f3b90362b0bf09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fol_goal_posfn</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>fol_goal_posfn</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="20" column="6" bodyfile="src/main.cpp" bodystart="20" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="main_8cpp_1ab6f857f99ed1634c0531b73b91a0742e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void arsubcallback</definition>
+        <argsstring>(const fiducial_msgs::FiducialTransformArray::ConstPtr &amp;msgs)</argsstring>
+        <name>arsubcallback</name>
+        <param>
+          <type>const fiducial_msgs::FiducialTransformArray::ConstPtr &amp;</type>
+          <declname>msgs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="46" column="6" bodyfile="src/main.cpp" bodystart="46" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="main_8cpp_1aa2baabcf8bc6fb2727c0aade0c1b8efe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void listen</definition>
+        <argsstring>(tf2_ros::Buffer &amp;tfBuffer)</argsstring>
+        <name>listen</name>
+        <param>
+          <type>tf2_ros::Buffer &amp;</type>
+          <declname>tfBuffer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="74" column="6" bodyfile="src/main.cpp" bodystart="74" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="main_8cpp_1a7e822c432bba543c9a7786eddb6f22b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void disp</definition>
+        <argsstring>()</argsstring>
+        <name>disp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="100" column="6" bodyfile="src/main.cpp" bodystart="100" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="main_8cpp_1a4cc7f91e3b69267132b1c1cc3416949d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void tolerance</definition>
+        <argsstring>()</argsstring>
+        <name>tolerance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="108" column="6" bodyfile="src/main.cpp" bodystart="108" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="main_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/main.cpp" line="135" column="5" bodyfile="src/main.cpp" bodystart="135" bodyend="283"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;actionlib/client/simple_action_client.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fiducial_msgs/FiducialTransformArray.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;geometry_msgs/Twist.h&gt;</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//for<sp/>geometry_msgs::Twist</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;move_base_msgs/MoveBaseAction.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2/LinearMath/Quaternion.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2_ros/transform_broadcaster.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;tf2_ros/transform_listener.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros/ros.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;xmlrpcpp/XmlRpcValue.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;std_msgs/String.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;array&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>actionlib::SimpleActionClient&lt;move_base_msgs::MoveBaseAction&gt;<sp/>MoveBaseClient;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">int32_t<sp/>fid_id;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>detect{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">std::array&lt;std::array&lt;double,2&gt;,4&gt;<sp/>follower_goal_pos;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>on_goal{</highlight><highlight class="keyword">false</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fol_goal_posfn(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;folfn<sp/>x<sp/>=<sp/>%f<sp/>y<sp/>=<sp/>%f&quot;</highlight><highlight class="normal">,x,y);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(fid_id)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[0][0]<sp/>=<sp/>x;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[0][1]<sp/>=<sp/>y;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[1][0]<sp/>=<sp/>x;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[1][1]<sp/>=<sp/>y;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[2][0]<sp/>=<sp/>x;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[2][1]<sp/>=<sp/>y;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[3][0]<sp/>=<sp/>x;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[3][1]<sp/>=<sp/>y;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>arsubcallback(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>fiducial_msgs::FiducialTransformArray::ConstPtr<sp/>&amp;msgs)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!msgs-&gt;transforms.empty())<sp/>{</highlight><highlight class="comment">//check<sp/>marker<sp/>is<sp/>detected</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>broadcaster<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>tf2_ros::TransformBroadcaster<sp/>br;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/>geometry_msgs::TransformStamped<sp/>transformStamped;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//broadcast<sp/>the<sp/>new<sp/>frame<sp/>to<sp/>/tf<sp/>Topic</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/>transformStamped.header.stamp<sp/>=<sp/>ros::Time::now();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>transformStamped.header.frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;explorer_tf/camera_rgb_optical_frame&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>transformStamped.child_frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;my_frame&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>transformStamped.transform.translation.x<sp/>=<sp/>msgs-&gt;transforms[0].transform.translation.x;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>transformStamped.transform.translation.y<sp/>=<sp/>msgs-&gt;transforms[0].transform.translation.y;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/>transformStamped.transform.translation.z<sp/>=<sp/>msgs-&gt;transforms[0].transform.translation.z<sp/>-<sp/>0.6;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/>transformStamped.transform.rotation.x<sp/>=<sp/>msgs-&gt;transforms[0].transform.rotation.x;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>transformStamped.transform.rotation.y<sp/>=<sp/>msgs-&gt;transforms[0].transform.rotation.y;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/>transformStamped.transform.rotation.z<sp/>=<sp/>msgs-&gt;transforms[0].transform.rotation.z;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>transformStamped.transform.rotation.w<sp/>=<sp/>msgs-&gt;transforms[0].transform.rotation.w;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*write<sp/>the<sp/>remaining<sp/>code<sp/>here*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>fid_id<sp/>=<sp/>msgs-&gt;transforms[0].fiducial_id;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>detect<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>br.sendTransform(transformStamped);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>detect<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>listen(tf2_ros::Buffer&amp;<sp/>tfBuffer)<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(detect<sp/>==<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/>&amp;&amp;<sp/>on_goal<sp/>==<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//for<sp/>listener</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/>geometry_msgs::TransformStamped<sp/>transformStamped;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">try</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>transformStamped<sp/>=<sp/>tfBuffer.lookupTransform(</highlight><highlight class="stringliteral">&quot;map&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;my_frame&quot;</highlight><highlight class="normal">,<sp/>ros::Time(0));</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>trans_x<sp/>=<sp/>transformStamped.transform.translation.x;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>trans_y<sp/>=<sp/>transformStamped.transform.translation.y;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>trans_z<sp/>=<sp/>transformStamped.transform.translation.z;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_INFO_STREAM(</highlight><highlight class="stringliteral">&quot;Position<sp/>in<sp/>map<sp/>frame:<sp/>[&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>trans_x<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>trans_y<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/>trans_z<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;]&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>fol_goal_posfn(trans_x,trans_y);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;x<sp/>=<sp/>%f<sp/>y<sp/>=<sp/>%f<sp/>z<sp/>=<sp/>%f&quot;</highlight><highlight class="normal">,trans_x,trans_y,trans_z);<sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>(tf2::TransformException&amp;<sp/>ex)<sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ROS_WARN(&quot;%s&quot;,<sp/>ex.what());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Duration(2.0).sleep();</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>disp()</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>t<sp/>=<sp/>0;t&lt;4;t++)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;%d<sp/>follower_goal_pos<sp/>x<sp/>=<sp/>%f<sp/>y<sp/>=<sp/>%f&quot;</highlight><highlight class="normal">,<sp/>t,<sp/>follower_goal_pos[t][0],follower_goal_pos[t][1]);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>tolerance()</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i&lt;4;i++)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(follower_goal_pos[i][0]&gt;0<sp/>&amp;&amp;<sp/>follower_goal_pos[i][1]&gt;0)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[i][0]<sp/>-=<sp/>0.4;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[i][1]<sp/>-=<sp/>0.4;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(follower_goal_pos[i][0]&lt;0<sp/>&amp;&amp;<sp/>follower_goal_pos[i][1]&gt;0)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[i][0]<sp/>+=<sp/>0.4;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[i][1]<sp/>-=<sp/>0.4;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(follower_goal_pos[i][0]&gt;0<sp/>&amp;&amp;<sp/>follower_goal_pos[i][1]&lt;0)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[i][0]<sp/>-=<sp/>0.4;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[i][1]<sp/>+=<sp/>0.4;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(follower_goal_pos[i][0]&lt;0<sp/>&amp;&amp;<sp/>follower_goal_pos[i][1]&lt;0)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[i][0]<sp/>+=<sp/>0.4;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal_pos[i][1]<sp/>+=<sp/>0.4;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>main(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>argv)</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>explorer_goal_sent<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>follower_goal_sent<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/>ros::init(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;simple_navigation_goals&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/></highlight><highlight class="comment">//simple_navigation_goals<sp/>node<sp/>starts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/>ros::NodeHandle<sp/>nh;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/>ros::Subscriber<sp/>arsub<sp/>=<sp/>nh.subscribe(</highlight><highlight class="stringliteral">&quot;fiducial_transforms&quot;</highlight><highlight class="normal">,100,<sp/>arsubcallback);<sp/><sp/><sp/></highlight><highlight class="comment">//aruco<sp/>marker<sp/>detect</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/>ros::Publisher<sp/>pubex<sp/>=<sp/>nh.advertise&lt;geometry_msgs::Twist&gt;(</highlight><highlight class="stringliteral">&quot;explorer/cmd_vel&quot;</highlight><highlight class="normal">,<sp/>100);<sp/><sp/><sp/></highlight><highlight class="comment">//robot<sp/>rotation<sp/>when<sp/>in<sp/>goal</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>tell<sp/>the<sp/>action<sp/>client<sp/>that<sp/>we<sp/>want<sp/>to<sp/>spin<sp/>a<sp/>thread<sp/>by<sp/>default</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/>MoveBaseClient<sp/>explorer_client(</highlight><highlight class="stringliteral">&quot;/explorer/move_base&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>tell<sp/>the<sp/>action<sp/>client<sp/>that<sp/>we<sp/>want<sp/>to<sp/>spin<sp/>a<sp/>thread<sp/>by<sp/>default</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/>MoveBaseClient<sp/>follower_client(</highlight><highlight class="stringliteral">&quot;/follower/move_base&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>wait<sp/>for<sp/>the<sp/>action<sp/>server<sp/>to<sp/>come<sp/>up</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!explorer_client.waitForServer(ros::Duration(5.0)))<sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Waiting<sp/>for<sp/>the<sp/>move_base<sp/>action<sp/>server<sp/>to<sp/>come<sp/>up<sp/>for<sp/>explorer&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!follower_client.waitForServer(ros::Duration(5.0)))<sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Waiting<sp/>for<sp/>the<sp/>move_base<sp/>action<sp/>server<sp/>to<sp/>come<sp/>up<sp/>for<sp/>follower&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/>std::array&lt;XmlRpc::XmlRpcValue,5&gt;<sp/>ex_goal_pos;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//Get<sp/>aruca<sp/>marker<sp/>locations<sp/>from<sp/>parameter<sp/>list</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/>nh.getParam(</highlight><highlight class="stringliteral">&quot;simple_navigation_goals/aruco_lookup_locations/target_1&quot;</highlight><highlight class="normal">,<sp/>ex_goal_pos[0]);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/>nh.getParam(</highlight><highlight class="stringliteral">&quot;simple_navigation_goals/aruco_lookup_locations/target_2&quot;</highlight><highlight class="normal">,<sp/>ex_goal_pos[1]);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/>nh.getParam(</highlight><highlight class="stringliteral">&quot;simple_navigation_goals/aruco_lookup_locations/target_3&quot;</highlight><highlight class="normal">,<sp/>ex_goal_pos[2]);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/>nh.getParam(</highlight><highlight class="stringliteral">&quot;simple_navigation_goals/aruco_lookup_locations/target_4&quot;</highlight><highlight class="normal">,<sp/>ex_goal_pos[3]);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/>move_base_msgs::MoveBaseGoal<sp/>explorer_goal[5];</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/>move_base_msgs::MoveBaseGoal<sp/>follower_goal[5];</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//goal<sp/>positions<sp/>for<sp/>explorer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;=3;i++)</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>explorer_goal[i].target_pose.header.frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;map&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>explorer_goal[i].target_pose.header.stamp<sp/>=<sp/>ros::Time::now();</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>explorer_goal[i].target_pose.pose.orientation.w<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>explorer_goal[i].target_pose.pose.position.x<sp/>=<sp/>ex_goal_pos[i][0];</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>explorer_goal[i].target_pose.pose.position.y<sp/>=<sp/>ex_goal_pos[i][1];</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>ROS_INFO_STREAM(</highlight><highlight class="stringliteral">&quot;Explorer:<sp/>&quot;</highlight><highlight class="normal">&lt;&lt;ex_goal_pos[i][0]&lt;&lt;</highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal">&lt;&lt;ex_goal_pos[i][1]);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//home<sp/>position<sp/>for<sp/>explorer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>explorer_goal[4].target_pose.header.frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;map&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>explorer_goal[4].target_pose.header.stamp<sp/>=<sp/>ros::Time::now();</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>explorer_goal[4].target_pose.pose.orientation.w<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>explorer_goal[4].target_pose.pose.position.x<sp/>=<sp/>-4;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>explorer_goal[4].target_pose.pose.position.y<sp/>=<sp/>2.5;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//goal<sp/>positions<sp/>for<sp/>follower</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i&lt;=3;i++)</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal[i].target_pose.header.frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;map&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal[i].target_pose.header.stamp<sp/>=<sp/>ros::Time::now();</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal[i].target_pose.pose.position.x<sp/>=<sp/>follower_goal_pos[i][0];<sp/></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal[i].target_pose.pose.position.y<sp/>=<sp/>follower_goal_pos[i][1];<sp/></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal[i].target_pose.pose.orientation.w<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//home<sp/>position<sp/>for<sp/>follower</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal[4].target_pose.header.frame_id<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;map&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal[4].target_pose.header.stamp<sp/>=<sp/>ros::Time::now();</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal[4].target_pose.pose.position.x<sp/>=<sp/>-1.97;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal[4].target_pose.pose.position.y<sp/>=<sp/>3.5;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>follower_goal[4].target_pose.pose.orientation.w<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yaw{};</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/>tf2_ros::Buffer<sp/>tfBuffer;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/>tf2_ros::TransformListener<sp/>tfListener(tfBuffer);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/>ros::Rate<sp/>loop_rate(10);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cnt_ex<sp/>=<sp/>0;<sp/><sp/><sp/></highlight><highlight class="comment">//Number<sp/>of<sp/>goals<sp/>visited<sp/>by<sp/>explorer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cnt_fl<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>test{</highlight><highlight class="keyword">true</highlight><highlight class="normal">};</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>int<sp/>ti<sp/>=<sp/>0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(ros::ok())<sp/>{</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(cnt_ex&lt;5)</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!explorer_goal_sent)</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout&lt;&lt;</highlight><highlight class="stringliteral">&quot;Sending<sp/>goal&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Sending<sp/>goal<sp/>for<sp/>explorer&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>explorer_client.sendGoal(explorer_goal[cnt_ex]);<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//goal<sp/>sent<sp/>to<sp/>explorer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>explorer_goal_sent<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(explorer_client.getState()<sp/>==<sp/>actionlib::SimpleClientGoalState::SUCCEEDED)<sp/></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_goal<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;CNT_EX<sp/>=<sp/>%d&quot;</highlight><highlight class="normal">,cnt_ex);</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(cnt_ex!=4)</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>geometry_msgs::Twist<sp/>msg;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>msg.angular.z<sp/>=<sp/>0.2;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pubex.publish(msg);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop_rate.sleep();</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if(ti&lt;20)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ti++;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(!detect);</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop_rate.sleep();</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;CALLING<sp/>LISTENER&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>listen(tfBuffer);<sp/><sp/><sp/></highlight><highlight class="comment">//transform<sp/>frame<sp/>from<sp/>camera<sp/>frame<sp/>to<sp/>map</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop_rate.sleep();</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>detect<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loop_rate.sleep();</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cnt_ex++;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>explorer_goal_sent<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Hooray,<sp/>Explorer<sp/>reached<sp/>goal&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>on_goal<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(cnt_ex&gt;4)</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tolerance();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!follower_goal_sent)<sp/>{</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>disp();</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Sending<sp/>goal<sp/>for<sp/>follower&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;cnt_fl<sp/>=<sp/>%d<sp/>follower_goal_pos<sp/>x<sp/>=<sp/>%f<sp/>y<sp/>=<sp/>%f&quot;</highlight><highlight class="normal">,cnt_fl,<sp/>follower_goal_pos[cnt_fl][0],follower_goal_pos[cnt_fl][1]);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>follower_client.sendGoal(follower_goal[cnt_fl]);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Sending<sp/>goal<sp/>position<sp/>to<sp/>follower</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>follower_goal_sent<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(follower_client.getState()<sp/>==<sp/>actionlib::SimpleClientGoalState::SUCCEEDED)<sp/>{</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>follower_goal_sent<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cnt_fl<sp/>=<sp/>cnt_fl+1;</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Hooray,<sp/>follower<sp/>reached<sp/>a<sp/>goal&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(cnt_fl==5)</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ROS_INFO(</highlight><highlight class="stringliteral">&quot;Completed...Shutting<sp/>down&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ros::shutdown();</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>loop_rate.sleep();</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/main.cpp"/>
+  </compounddef>
+</doxygen>

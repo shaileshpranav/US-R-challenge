@@ -12,6 +12,8 @@
 #include <array>
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
+
+move_base_msgs::MoveBaseGoal follower_goal[5];
 int32_t fid_id;
 bool detect{false};
 std::array<std::array<double,2>,4> follower_goal_pos;
@@ -55,7 +57,7 @@ void arsubcallback(const fiducial_msgs::FiducialTransformArray::ConstPtr &msgs)
   transformStamped.child_frame_id = "my_frame";
   transformStamped.transform.translation.x = msgs->transforms[0].transform.translation.x;
   transformStamped.transform.translation.y = msgs->transforms[0].transform.translation.y;
-  transformStamped.transform.translation.z = msgs->transforms[0].transform.translation.z - 0.6;
+  transformStamped.transform.translation.z = msgs->transforms[0].transform.translation.z - 0.4;
   transformStamped.transform.rotation.x = msgs->transforms[0].transform.rotation.x;
   transformStamped.transform.rotation.y = msgs->transforms[0].transform.rotation.y;
   transformStamped.transform.rotation.z = msgs->transforms[0].transform.rotation.z;
@@ -132,10 +134,30 @@ void tolerance()
   }
 }
 
+void fl_goal()
+{
+    //goal positions for follower
+    for(int i = 0; i<=3;i++)
+  {
+    follower_goal[i].target_pose.header.frame_id = "map";
+    follower_goal[i].target_pose.header.stamp = ros::Time::now();
+    follower_goal[i].target_pose.pose.position.x = follower_goal_pos[i][0]; 
+    follower_goal[i].target_pose.pose.position.y = follower_goal_pos[i][1]; 
+    follower_goal[i].target_pose.pose.orientation.w = 1.0;
+    
+  }
+  //home position for follower
+    follower_goal[4].target_pose.header.frame_id = "map";
+    follower_goal[4].target_pose.header.stamp = ros::Time::now();
+    follower_goal[4].target_pose.pose.position.x = -1.97;
+    follower_goal[4].target_pose.pose.position.y = 3.5;
+    follower_goal[4].target_pose.pose.orientation.w = 1.0;
+}
+
 int main(int argc, char** argv)
 {
   bool explorer_goal_sent = false;
-  bool follower_goal_sent = false;
+  bool follower_goal_sent{false};
 
   ros::init(argc, argv, "simple_navigation_goals");   //simple_navigation_goals node starts
   ros::NodeHandle nh;
@@ -167,7 +189,7 @@ int main(int argc, char** argv)
   nh.getParam("simple_navigation_goals/aruco_lookup_locations/target_4", ex_goal_pos[3]);
   
   move_base_msgs::MoveBaseGoal explorer_goal[5];
-  move_base_msgs::MoveBaseGoal follower_goal[5];
+
 
   //goal positions for explorer
   for(int i=0; i<=3;i++)
@@ -186,32 +208,16 @@ int main(int argc, char** argv)
     explorer_goal[4].target_pose.pose.position.x = -4;
     explorer_goal[4].target_pose.pose.position.y = 2.5;
   
-  //goal positions for follower
-    for(int i = 0; i<=3;i++)
-  {
-    follower_goal[i].target_pose.header.frame_id = "map";
-    follower_goal[i].target_pose.header.stamp = ros::Time::now();
-    follower_goal[i].target_pose.pose.position.x = follower_goal_pos[i][0]; 
-    follower_goal[i].target_pose.pose.position.y = follower_goal_pos[i][1]; 
-    follower_goal[i].target_pose.pose.orientation.w = 1.0;
-    
-  }
-  //home position for follower
-    follower_goal[4].target_pose.header.frame_id = "map";
-    follower_goal[4].target_pose.header.stamp = ros::Time::now();
-    follower_goal[4].target_pose.pose.position.x = -1.97;
-    follower_goal[4].target_pose.pose.position.y = 3.5;
-    follower_goal[4].target_pose.pose.orientation.w = 1.0;
 
 
-  double yaw{};
+
   tf2_ros::Buffer tfBuffer;
   tf2_ros::TransformListener tfListener(tfBuffer);
   ros::Rate loop_rate(10);
   int cnt_ex = 0;   //Number of goals visited by explorer
   int cnt_fl = 0;
   bool test{true};
-  // int ti = 0;
+  int ti = 0;
   while (ros::ok()) {
     if(cnt_ex<5)
     {
@@ -253,31 +259,49 @@ int main(int argc, char** argv)
         on_goal = false;
       }
     }
-
+    fl_goal();;
     if(cnt_ex>4)
     {
       // tolerance();
     if (!follower_goal_sent) {
       disp();
       ROS_INFO("Sending goal for follower");
-      ROS_INFO("cnt_fl = %d follower_goal_pos x = %f y = %f",cnt_fl, follower_goal_pos[cnt_fl][0],follower_goal_pos[cnt_fl][1]);
-      follower_client.sendGoal(follower_goal[4]);    //Sending goal position to follower
+      ROS_INFO("cnt_fl = %d follower_goal_pos x = %f y = %f",cnt_fl, follower_goal_pos[0][0],follower_goal_pos[0][1]);
+      follower_client.sendGoal(follower_goal[0]);    //Sending goal position to follower
       follower_goal_sent = true;
     }
     if (follower_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
-      
+      ROS_INFO("%d",cnt_fl);;
       follower_goal_sent = false;
-      cnt_fl = cnt_fl+1;
-      ROS_INFO("Hooray, follower reached a goal");
+      ti = 1;
+      // ROS_INFO("Hooray, follower reached a goal");
+      }
+    if (!follower_goal_sent && ti==1) {
+      disp();
+      ROS_INFO("Sending goal for follower");
+      ROS_INFO("cnt_fl = %d follower_goal_pos x = %f y = %f",cnt_fl, follower_goal_pos[0][0],follower_goal_pos[0][1]);
+      follower_client.sendGoal(follower_goal[1]);    //Sending goal position to follower
+      follower_goal_sent = true;
+    }
+    if (follower_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED && ti ==1) {
+      ROS_INFO("%d",cnt_fl);;
+      follower_goal_sent = false;
+      ti = 2;
+      // ROS_INFO("Hooray, follower reached a goal");
+      }
+    if (!follower_goal_sent && ti == 2) {
+      disp();
+      ROS_INFO("Sending goal for follower");
+      ROS_INFO("cnt_fl = %d follower_goal_pos x = %f y = %f",cnt_fl, follower_goal_pos[0][0],follower_goal_pos[0][1]);
+      follower_client.sendGoal(follower_goal[2]);    //Sending goal position to follower
+      follower_goal_sent = true;
+    }
+    if (follower_client.getState() == actionlib::SimpleClientGoalState::SUCCEEDED && ti == 2) {
+      ROS_INFO("%d",cnt_fl);;
+      follower_goal_sent = false;
+      ti = 3;
+      // ROS_INFO("Hooray, follower reached a goal");
       }
     }
-    if(cnt_fl==5)
-    {
-      ROS_INFO("Completed...Shutting down");
-      ros::shutdown();
-    }
-    loop_rate.sleep();
   }
-
-
 }
